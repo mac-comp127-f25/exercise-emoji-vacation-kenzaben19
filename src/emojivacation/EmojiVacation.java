@@ -43,7 +43,7 @@ public class EmojiVacation {
 
         addCloudRows(canvas);
 
-        // TODO: [Instructions step 2] Create mountains 50% of the time.
+        addMountains();
         //       You should randomly determine the size and number of layers
         //       (within reasonable constraints).
 
