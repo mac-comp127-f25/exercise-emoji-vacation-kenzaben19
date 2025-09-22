@@ -43,11 +43,17 @@ public class EmojiVacation {
 
         addCloudRows(canvas);
 
-        addMountains(canvas, 400, 100, 4);
+        if (percentChance(50.0)) {
+            addMountains(canvas, 400, 100, 4);
+        }
         //       You should randomly determine the size and number of layers
         //       (within reasonable constraints).
 
         addGround(canvas, 400);
+
+         if (percentChance(60.0)) {
+            addForest(canvas, 400, 100, 7);
+        }
 
         // TODO: [Instructions step 2] Create forests 60% of the time. You should randomly
         //       determine the count for the number of trees. Pick reasonable values for
@@ -55,6 +61,9 @@ public class EmojiVacation {
 
         List<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 60, 550, 20);
+        for (GraphicsGroup member : family) {
+            canvas.add(member);
+        }
         // TODO: [Instructions step 4] Add each emoji in the list to the canvas
     }
 
@@ -87,11 +96,14 @@ public class EmojiVacation {
     }
 
     private static void positionFamily(
-            List<GraphicsGroup> family,
+            List<GraphicsGroup> family, 
             double leftX,
             double baselineY,
-            double spacing
-    ) {
+            double spacing 
+        ) {
+    }
+            
+ {
         // TODO: [Instructions step 5] Iterate over the emojis in the list,
         //       and position them all in a neat row
 
