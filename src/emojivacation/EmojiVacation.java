@@ -43,7 +43,7 @@ public class EmojiVacation {
 
         addCloudRows(canvas);
 
-        addMountains();
+        addMountains(canvas, 400, 100, 4);
         //       You should randomly determine the size and number of layers
         //       (within reasonable constraints).
 
