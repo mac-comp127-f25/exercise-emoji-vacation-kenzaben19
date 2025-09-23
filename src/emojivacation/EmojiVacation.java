@@ -60,7 +60,7 @@ public class EmojiVacation {
         //       other parameters.
 
         List<GraphicsGroup> family = createFamily(2, 3);
-        positionFamily(family, 60, 550, 20);
+        positionFamily(family, 0, 440, 20);
         for (GraphicsGroup member : family) {
             canvas.add(member);
         }
@@ -95,12 +95,11 @@ public class EmojiVacation {
         return ProvidedEmojis.createSmileyFace(size);
     }
 
-    private static void positionFamily(
-            List<GraphicsGroup> family, 
-            double leftX,
-            double baselineY,
-            double spacing 
-        ) {
+    private static void positionFamily(List<GraphicsGroup> family, double leftX, double baselineY, double spacing) {
+        family.get(0).setPosition(leftX, baselineY);
+        for (int n = 1; n < family.size(); n++) {
+            family.get(n).setPosition(leftX +  2 * family.get(n).getWidth(), baselineY + 65);
+        }
     }
             
  {
