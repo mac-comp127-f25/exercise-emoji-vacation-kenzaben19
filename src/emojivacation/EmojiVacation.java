@@ -32,8 +32,7 @@ public class EmojiVacation {
     }
 
     private static void doSlideShow(CanvasWindow canvas) {
-        // TODO: [Instructions step 8] Change this to an actual slideshow
-        for (int n=0; n < 1; n--) {
+        for (int times=0; times < 1; times--) {
         generateVacationPhoto(canvas);
         canvas.draw();
         try {
@@ -64,53 +63,25 @@ public class EmojiVacation {
             addForest(canvas, 400, 100, 7);
         }
 
-        // TODO: [Instructions step 2] Create forests 60% of the time. You should randomly
-        //       determine the count for the number of trees. Pick reasonable values for
-        //       other parameters.
-
         List<GraphicsGroup> family = createFamily(2, 3);
         positionFamily(family, 0, 440, 20);
         for (GraphicsGroup member : family) {
             canvas.add(member);
         }
-        // TODO: [Instructions step 4] Add each emoji in the list to the canvas
     }
 
     // –––––– Emoji family –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
     private static List<GraphicsGroup> createFamily(int adultCount, int childCount) {
         double adultSize = 160, childSize = 90;
-
-        // TODO: [Instructions step 6] Change this so that instead of always creating one adult
-        //       and one child, it instead creates a list containing adultCount adults,
-        //       and childCount children.
-        //
-        // Hint: You can't use List.of() to do this, because you don't know the size of the
-        // resulting list before the code actually runs. What can you use?
-        //
-        // int n = 0;
         List<GraphicsGroup> mutableList = new ArrayList<>();
         
-        for (int n = 0; n < adultCount; n++) {
+        for (int numberOfEmojis = 0; numberOfEmojis < adultCount; numberOfEmojis++) {
             mutableList.add(createRandomEmoji(adultSize));
         }
-        for (int n = 0; n < childCount; n++) {
+        for (int numberOfEmojis = 0; numberOfEmojis < childCount; numberOfEmojis++) {
             mutableList.add(createRandomEmoji(childSize));
         }
-        // while (n <= adultCount) {
-        //     n+=1;
-        // }
-        
-        // int i = 0;
-        // while (i <= childCount) {
-        //     i+=1;
-        // }
-        // return List.of(
-        //     createRandomEmoji(adultSize),
-        //     createRandomEmoji(childSize));
-        // return List.of(
-        //     createRandomEmoji(adultSize),
-        //     createRandomEmoji(childSize));
         return mutableList;
     }
 
@@ -126,16 +97,6 @@ public class EmojiVacation {
         } else {
             return ProvidedEmojis.createContentedFace(size);
         }
-        
-        
-        // TODO: [Instructions step 7] Change this so that instead of always creating a smiley face,
-        //       it randomly selects one of the many available emojis.
-        //
-        // Hint: You can use chained if/else conditionals: with a certain probability, return emoji
-        // type A, else with some other probability return emoji type B, else with a certain
-        // probability ... etc ... else return a smiley by default.
-        //
-        // return ProvidedEmojis.createSmileyFace(size);
     }
 
     private static void positionFamily(List<GraphicsGroup> family, double leftX, double baselineY, double spacing) {
@@ -144,18 +105,6 @@ public class EmojiVacation {
             family.get(n).setPosition(leftX + spacing + family.get(n-1).getWidth(), baselineY - family.get(n).getHeight());
             leftX = leftX + spacing + family.get(n-1).getWidth();
         }
-    }
-            
- {
-        // TODO: [Instructions step 5] Iterate over the emojis in the list,
-        //       and position them all in a neat row
-
-        // The leftmost emoji’s left edge should be at leftX, and spacing is the number of pixels that should be between
-        // each emoji and the next. But how to you space them if the kids and adults have different widths? (Hint: you
-        // can ask any graphics object for its width.)
-        //
-        // The bottom of each emoji should be baselineY. But setPosition() sets the _top_! How do you set the bottom to
-        // a given position? (Hint: you can ask any graphics object for its height.)
     }
 
     // –––––– Scenery ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
