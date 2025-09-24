@@ -33,7 +33,16 @@ public class EmojiVacation {
 
     private static void doSlideShow(CanvasWindow canvas) {
         // TODO: [Instructions step 8] Change this to an actual slideshow
+        for (int n=0; n < 1; n--) {
         generateVacationPhoto(canvas);
+        canvas.draw();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canvas.removeAll();
+        }
     }
 
     private static void generateVacationPhoto(CanvasWindow canvas) {
@@ -79,23 +88,46 @@ public class EmojiVacation {
         // Hint: You can't use List.of() to do this, because you don't know the size of the
         // resulting list before the code actually runs. What can you use?
         //
-        int n = 0;
+        // int n = 0;
         List<GraphicsGroup> mutableList = new ArrayList<>();
-        while (n <= adultCount) {
-            n+=1;
-        }
         
-        int i = 0;
-        while (i <= childCount) {
-            i+=1;
+        for (int n = 0; n < adultCount; n++) {
+            mutableList.add(createRandomEmoji(adultSize));
         }
+        for (int n = 0; n < childCount; n++) {
+            mutableList.add(createRandomEmoji(childSize));
+        }
+        // while (n <= adultCount) {
+        //     n+=1;
+        // }
+        
+        // int i = 0;
+        // while (i <= childCount) {
+        //     i+=1;
+        // }
         // return List.of(
         //     createRandomEmoji(adultSize),
         //     createRandomEmoji(childSize));
-        return null;
+        // return List.of(
+        //     createRandomEmoji(adultSize),
+        //     createRandomEmoji(childSize));
+        return mutableList;
     }
 
     private static GraphicsGroup createRandomEmoji(double size) {
+        if (percentChance(20)) {
+            return ProvidedEmojis.createSmileyFace(size); 
+        } else if (percentChance(20)) {
+            return ProvidedEmojis.createFrownyFace(size);
+        } else if (percentChance(20)) {
+            return ProvidedEmojis.createWinkingFace(size);
+        } else if (percentChance(20)) {
+            return ProvidedEmojis.createNauseousFace(size); 
+        } else {
+            return ProvidedEmojis.createContentedFace(size);
+        }
+        
+        
         // TODO: [Instructions step 7] Change this so that instead of always creating a smiley face,
         //       it randomly selects one of the many available emojis.
         //
@@ -103,13 +135,14 @@ public class EmojiVacation {
         // type A, else with some other probability return emoji type B, else with a certain
         // probability ... etc ... else return a smiley by default.
         //
-        return ProvidedEmojis.createSmileyFace(size);
+        // return ProvidedEmojis.createSmileyFace(size);
     }
 
     private static void positionFamily(List<GraphicsGroup> family, double leftX, double baselineY, double spacing) {
-        family.get(0).setPosition(leftX, baselineY);
+        family.get(0).setPosition(leftX, baselineY - family.get(0).getHeight());
         for (int n = 1; n < family.size(); n++) {
-            family.get(n).setPosition(leftX +  2 * family.get(n).getWidth(), baselineY + 65);
+            family.get(n).setPosition(leftX + spacing + family.get(n-1).getWidth(), baselineY - family.get(n).getHeight());
+            leftX = leftX + spacing + family.get(n-1).getWidth();
         }
     }
             
